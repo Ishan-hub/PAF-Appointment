@@ -1,7 +1,6 @@
 package model;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -42,7 +41,7 @@ public class Appointment {
 			preparedStmt.setInt(1, 0);
 			preparedStmt.setString(2, number);
 			preparedStmt.setString(3, type);
-			preparedStmt.setDate(4, Date.valueOf(date));
+			preparedStmt.setString(4, date);
 			preparedStmt.setString(5, des);
 			preparedStmt.setString(6, did);
 			preparedStmt.setString(7, hid);
@@ -153,7 +152,7 @@ public class Appointment {
 			// binding values    
 			preparedStmt.setInt(1, Integer.parseInt(number));
 			preparedStmt.setString(2, type);
-			preparedStmt.setDate(3, Date.valueOf(date));
+			preparedStmt.setString(3, date);
 			preparedStmt.setString(4, des);
 			preparedStmt.setInt(5, Integer.parseInt(did));
 			preparedStmt.setInt(6, Integer.parseInt(hid));
