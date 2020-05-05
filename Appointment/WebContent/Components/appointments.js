@@ -74,6 +74,9 @@ $(document).on(
 			$("#type").val($(this).closest("tr").find('td:eq(1)').text());
 			$("#date").val($(this).closest("tr").find('td:eq(2)').text());
 			$("#des").val($(this).closest("tr").find('td:eq(3)').text());
+			$("#did").val($(this).closest("tr").find('td:eq(4)').text());
+			$("#hid").val($(this).closest("tr").find('td:eq(5)').text());
+			$("#pid").val($(this).closest("tr").find('td:eq(6)').text());
 		});
 
 // REMOVE===========================================
@@ -138,6 +141,39 @@ function validateAppointmentForm() {
 	// DESCRIPTION------------------------
 	if ($("#des").val().trim() == "") {
 		return "Insert Appointment Description.";
+	}
+	
+	// DoctorID
+	if ($("#did").val().trim() == "") {
+		return "Insert Doctor ID.";
+	}
+	
+	// HospitalID
+	if ($("#hid").val().trim() == "") {
+		return "Insert Hospital ID.";
+	}
+	
+	// PatientID
+	if ($("#pid").val().trim() == "") {
+		return "Insert Patient ID.";
+	}
+	
+	// is numerical value
+	var tmpdid = $("#did").val().trim();
+	if (!$.isNumeric(tmpdid)) {
+		return "Insert a numerical value for Doctor ID.";
+	}
+	
+	// is numerical value
+	var tmphid = $("#hid").val().trim();
+	if (!$.isNumeric(tmphid)) {
+		return "Insert a numerical value for Hospital ID.";
+	}
+	
+	// is numerical value
+	var tmppid = $("#pid").val().trim();
+	if (!$.isNumeric(tmppid)) {
+		return "Insert a numerical value for Patient ID.";
 	}
 
 	return true;

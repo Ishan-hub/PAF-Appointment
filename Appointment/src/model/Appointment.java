@@ -22,7 +22,7 @@ public class Appointment {
 		return con;
 	}
 
-	public String insertAppointment(String number, String type, String date, String des)  
+	public String insertAppointment(String number, String type, String date, String des, String did, String hid, String pid)  
 	{   
 		String output = ""; 
 	 
@@ -34,7 +34,7 @@ public class Appointment {
 			{return "Error while connecting to the database for inserting."; } 
 	 
 			// create a prepared statement    
-			String query = " insert into appointment (`id`,`number`,`type`,`date`,`des`)" + " values (?, ?, ?, ?, ?)"; 
+			String query = " insert into appointment (`id`,`number`,`type`,`date`,`des`,`did`,`hid`,`pid`)" + " values (?, ?, ?, ?, ?, ?, ?, ?)"; 
 	 
 			PreparedStatement preparedStmt = con.prepareStatement(query); 
 	 
@@ -44,6 +44,9 @@ public class Appointment {
 			preparedStmt.setString(3, type);
 			preparedStmt.setDate(4, Date.valueOf(date));
 			preparedStmt.setString(5, des);
+			preparedStmt.setString(6, did);
+			preparedStmt.setString(7, hid);
+			preparedStmt.setString(8, pid);
 
 			
 			// execute the statement    
@@ -77,7 +80,7 @@ public class Appointment {
 			} 
 	 
 			// Prepare the html table to be displayed    
-			output = "<table border=\'1\'><tr><th>Appointment Number</th><th>Appointment Type</th><th>Appointment Date</th><th>Appointment Description</th><th>Update</th><th>Remove</th></tr>";
+			output = "<table border=\'1\'><tr><th>Appointment Number</th><th>Appointment Type</th><th>Appointment Date</th><th>Appointment Description</th><th>Doctor ID</th><th>Hospital ID</th><th>Patient ID</th><th>Update</th><th>Remove</th></tr>";
 	 
 			String query = "select * from appointment";    
 			Statement stmt = con.createStatement();    
@@ -91,6 +94,9 @@ public class Appointment {
 				String type = rs.getString("type");
 				String date = rs.getString("date");
 				String des = rs.getString("des");
+				String did = Integer.toString(rs.getInt("did"));
+				String hid = Integer.toString(rs.getInt("hid"));
+				String pid = Integer.toString(rs.getInt("pid"));
 
 			
 	 
@@ -99,7 +105,10 @@ public class Appointment {
 							+ number + "</td>";      
 				output += "<td>" + type + "</td>";     
 				output += "<td>" + date + "</td>";     
-				output += "<td>" + des + "</td>"; 
+				output += "<td>" + des + "</td>";
+				output += "<td>" + did + "</td>"; 
+				output += "<td>" + hid + "</td>"; 
+				output += "<td>" + pid + "</td>"; 
 	 
 				// buttons     
 //				output += "<td><input name=\'btnUpdate\' type=\'button\' value=\'Update\' class=\' btnUpdate btn btn-secondary\'></td>"
@@ -125,7 +134,7 @@ public class Appointment {
 	}
 	 
 	
-	public String updateAppointment(String id, String number, String type, String date, String des)  
+	public String updateAppointment(String id, String number, String type, String date, String des,  String did, String hid, String pid)  
 	{   
 		String output = ""; 
 	 
@@ -137,7 +146,7 @@ public class Appointment {
 			{return "Error while connecting to the database for updating."; } 
 	 
 			// create a prepared statement    
-			String query = "UPDATE appointment SET number=?,type=?,date=?,des=? " + "WHERE id=?";
+			String query = "UPDATE appointment SET number=?,type=?,date=?,des=?,did=?,hid=?,pid=? " + "WHERE id=?";
 	 
 			PreparedStatement preparedStmt = con.prepareStatement(query); 
 	 
@@ -146,7 +155,10 @@ public class Appointment {
 			preparedStmt.setString(2, type);
 			preparedStmt.setDate(3, Date.valueOf(date));
 			preparedStmt.setString(4, des);
-			preparedStmt.setInt(5, Integer.parseInt(id));
+			preparedStmt.setInt(5, Integer.parseInt(did));
+			preparedStmt.setInt(6, Integer.parseInt(hid));
+			preparedStmt.setInt(7, Integer.parseInt(pid));
+			preparedStmt.setInt(8, Integer.parseInt(id));
 
 	 
 			// execute the statement    

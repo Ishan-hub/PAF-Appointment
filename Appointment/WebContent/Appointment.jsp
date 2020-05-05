@@ -27,6 +27,12 @@
 					Appointment Date: <input id="date" name="date" type="date"
 						class="form-control form-control-sm"> <br>
 					Appointment Description: <input id="des" name="des" type="text"
+						class="form-control form-control-sm"> <br> Doctor ID:
+					<input id="did" name="did" type="text"
+						class="form-control form-control-sm"> <br> Hospital
+					ID: <input id="hid" name="hid" type="text"
+						class="form-control form-control-sm"> <br> Patient
+					ID: <input id="pid" name="pid" type="text"
 						class="form-control form-control-sm"> <br> <input
 						id="btnSave" name="btnSave" type="button" value="Save"
 						class="btn btn-primary"> <input type="hidden"
